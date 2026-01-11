@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BreakUpAI - Understanding the Cost of Separation</title>
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#667eea">
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-container {
+            background: white;
+            padding: 60px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        h1 {
+            color: #2d3748;
+            margin-top: 30px;
+            font-size: 2.5em;
+            font-weight: 700;
+        }
+
+        .tagline {
+            color: #718096;
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+
+        .logo {
+            position: relative;
+            width: 160px;
+            height: 140px;
+            margin: 0 auto;
+        }
+
+        .icon {
+            position: absolute;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .icon:nth-child(1) {
+            font-size: 90px;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+        }
+
+        .icon:nth-child(2) {
+            font-size: 68px;
+            bottom: 10px;
+            left: 10px;
+            z-index: 1;
+        }
+
+        .icon:nth-child(3) {
+            font-size: 80px;
+            bottom: 5px;
+            right: 10px;
+            z-index: 2;
+        }
+
+        .icon:hover {
+            transform: scale(1.1);
+            z-index: 10;
+        }
+
+        .icon:nth-child(1):hover {
+            transform: translateX(-50%) scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-container">
+        <div class="logo">
+            <div class="icon">💔</div>
+            <div class="icon">💵</div>
+            <div class="icon">⚖️</div>
+        </div>
+    </div>
+</body>
+</html>
