@@ -286,12 +286,34 @@ See [SETUP.md](./SETUP.md) for detailed instructions.
 
 ## 🚢 Deployment
 
-Coming soon: Production deployment guides for:
-- AWS (ECS, RDS, Lambda)
-- Vercel (Frontend)
-- Railway (Backend)
-- Docker Swarm
-- Kubernetes
+### Cloudflare (Recommended)
+
+The application is optimized for **Cloudflare Pages** and **Workers**:
+
+```bash
+# One-command deployment
+npm run pages:deploy
+
+# Or use Git integration for automatic deployments
+# Connect at: https://dash.cloudflare.com
+```
+
+**Benefits:**
+- 🚀 Global CDN with edge caching
+- 💰 Generous free tier
+- 🔒 Built-in DDoS protection
+- ⚡ Serverless API functions
+- 📊 Real-time analytics
+
+📖 **[Complete Cloudflare Deployment Guide](./CLOUDFLARE.md)**
+
+### Alternative Platforms
+
+- **Docker:** Deploy anywhere with `docker-compose up -d`
+- **AWS:** ECS, RDS, Lambda
+- **Vercel:** Frontend hosting
+- **Railway:** Full-stack deployment
+- **Render:** Managed containers
 
 ---
 

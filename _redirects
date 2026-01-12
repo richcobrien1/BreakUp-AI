@@ -1,0 +1,6 @@
+# Cloudflare Pages Redirects Configuration
+# API proxy - redirect to backend Workers or external service
+/api/*  https://api.breakupai.workers.dev/:splat  200
+
+# SPA fallback - all other routes go to index.html
+/*  /index.html  200
