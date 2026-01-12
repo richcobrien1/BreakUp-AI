@@ -1,7 +1,15 @@
 # Cloudflare Pages Configuration
 name = "breakupai"
 compatibility_date = "2024-01-01"
-pages_build_output_dir = "dist"
+
+[build]
+command = "npm install && npm run build"
+cwd = ""
+watch_dir = "src"
+
+[build.upload]
+format = "directory"
+dir = "dist"
 
 # Note: Service bindings, KV, D1, and other resources are configured
 # in the Cloudflare Pages dashboard under Settings > Functions > Bindings
