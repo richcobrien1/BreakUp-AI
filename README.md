@@ -1,125 +1,311 @@
-# BreakUpAI
+# Breakup-AI: The Civil Rights Gap in Modern Partnerships
 
-## About
+## Overview
 
-**BreakUpAI** is a decision-support tool designed to help people navigate one of life's most emotionally turbulent experiences: breakups. Rather than offering false hope or vague platitudes, BreakUpAI provides structured, data-driven insights to reduce emotional ambiguity and help users make informed decisions about their relationships.
+Breakup-AI exists to expose and correct a systemic failure:
 
-### The Problem
+**Most spouses are never educated about their legal and financial rights within a partnership — until it's too late.**
 
-Millions of people search for clarity during breakups every month:
-- "Will my ex come back"
-- "Is my relationship over"
-- "What does it mean if they blocked me"
-- "Signs the breakup is final"
+Across the United States, millions of non-breadwinning partners invest years of unpaid labor, childcare, homemaking, emotional support, and career sacrifice into a relationship. Yet when that partnership dissolves, they often walk away with a fraction of the value they created, or nothing at all.
 
-Currently, they rely on random Reddit strangers, TikTok "gurus," or horoscope-like advice. There's a desperate need for **rational, pattern-based guidance** during emotional chaos.
+**This is not a personal problem.**  
+**This is a structural, legal, and economic inequity.**
 
----
-
-## 💡 Why BreakUpAI is Different
-
-### 🧠 Pattern Recognition Over Speculation
-Breakups aren't random — they follow predictable behavioral patterns:
-- Avoidant vs anxious attachment responses
-- Rebound timelines and communication decay curves
-- Conflict-resolution history
-- Attachment style compatibility
-- Relationship length and intensity
-
-BreakUpAI maps these patterns to provide orientation, not fortune-telling.
-
-### 📊 Data-Driven Likelihood Models
-Instead of saying "your ex will return," we provide structured probability assessments:
-
-**High likelihood of reconciliation** when:
-- Long-term relationship with low conflict
-- Breakup triggered by external stress, not fundamental incompatibility
-- Continued respectful communication
-- Both partners willing to work on issues
-
-**Low likelihood** when:
-- Repeated breakup cycles
-- Infidelity or betrayal
-- One partner has clearly moved on
-- Presence of abuse or toxicity
-
-### 🧭 Actionable Direction, Not False Hope
-BreakUpAI helps users make decisions instead of spiraling:
-
-- "Based on your inputs, reconciliation is unlikely. Here are healthier next steps."
-- "There is reconciliation potential, but only if X, Y, Z conditions change."
-- "This breakup appears final. Focus on closure, boundaries, and recovery."
-
-### 🧩 Bridging the Gap
-We fill the space between expensive therapy, unreliable social media advice, and astrology — offering the **first rational, structured alternative** for breakup decision-making.
+Breakup-AI is designed to close that gap.
 
 ---
 
-## 🔧 Core Features
+## The Core Problem
 
-### 1. Structured Intake Assessment
-- Relationship length and living situation
-- Reason for breakup and communication patterns
-- Attachment styles and conflict history
-- Safety considerations (with appropriate disclaimers)
-- Current dating status of both partners
+### 1. No Education on Civil Rights
 
-### 2. Probability-Based Analysis
-Not deterministic predictions, but informed likelihood scores:
-- **Reconciliation likelihood:** [percentage]
-- **Stability if reconciled:** [assessment]
-- **Recommended focus:** [personalized guidance]
+Spouses are rarely taught:
+- What counts as marital property
+- How assets are divided
+- How unpaid labor is valued
+- What documentation matters
+- How state laws differ
+- What protections exist for non-earners
 
-### 3. Narrative Explanation
-Numbers with meaning — we explain *why* the analysis reached its conclusions based on established relationship psychology.
+This lack of education creates a predictable outcome:  
+**The partner with less financial power is the partner with the least information.**
 
-### 4. Action Plans
-Concrete next steps:
-- 7-day emotional stabilization plan
-- 30-day no-contact structure guidance
-- Communication decision trees
-- Emotional recovery checklists
-- "Should I reach out?" flowcharts
+### 2. Economic Dependency Without Protection
 
----
+Non-breadwinning spouses often:
+- Lose earning potential
+- Pause or abandon careers
+- Take on childcare and domestic labor
+- Support the breadwinner's advancement
+- Maintain the household infrastructure
 
-## 🎯 The Real Value
+**These contributions have real economic value, but the system rarely teaches people how to claim it.**
 
-Breakups create the worst psychological state: **uncertainty**.
+### 3. Legal Complexity as a Barrier
 
-BreakUpAI reduces that uncertainty — even slightly — which becomes incredibly valuable to people desperate for clarity and control during emotional chaos.
+The legal system is:
+- Expensive
+- Intimidating
+- Inconsistent across states
+- Difficult to navigate without representation
 
----
+Breadwinners often enter separation with:
+- Financial literacy
+- Access to accounts
+- Legal counsel
+- Confidence in the process
 
-## 💰 Future Potential
+Non-breadwinners enter with:
+- Fear
+- Confusion
+- No roadmap
+- No education
+- No leverage
 
-BreakUpAI can expand into a comprehensive relationship wellness platform:
-- Breakup recovery guides and courses
-- Communication templates for difficult conversations
-- Conflict-resolution frameworks
-- Detailed attachment-style assessments
-- Premium relationship analysis reports
-- Coaching and therapy referrals
-
-This addresses a **massive evergreen market** with genuine, ethical value.
-
----
-
-## 🛡️ Ethical Boundaries
-
-BreakUpAI is built on clear ethical principles:
-- No false promises or manipulative hope
-- Safety-first approach for toxic or abusive relationships
-- Clear disclaimers about probabilistic nature of assessments
-- Evidence-based frameworks rooted in relationship psychology
-- Respectful, empowering guidance that supports healthy decision-making
+**This imbalance is not accidental — it is the predictable result of a system that never teaches spouses their rights.**
 
 ---
 
-## 🚀 Vision
+## What Breakup-AI Does
 
-To become the trusted, rational resource for anyone navigating relationship uncertainty — providing the clarity, structure, and direction that people desperately need during one of life's most challenging transitions.
+Breakup-AI is a **forensic rights-education and asset-protection platform** built for the spouse who was never given the information they needed.
+
+### Breakup-AI provides:
+- Legal rights education (state-specific)
+- Asset identification and valuation
+- Unpaid labor and time-investment analysis
+- Damages estimation
+- Evidence and documentation checklists
+- Risk assessment and protection strategies
+- Negotiation preparation
+
+**This is not therapy.**  
+**This is economic survival.**
 
 ---
 
-*BreakUpAI: Understanding the Complete Cost of Separation*
+## Who This Platform Protects
+
+Breakup-AI is built for:
+- Stay-at-home parents
+- Partners who supported a career
+- Spouses who sacrificed earning potential
+- Individuals in long-term cohabitation
+- Anyone financially vulnerable in a separation
+
+It is **gender-neutral**, **income-neutral**, and **relationship-structure-neutral**.
+
+If you invested time, labor, or opportunity into a partnership, Breakup-AI helps you understand what that investment is worth.
+
+---
+
+## Why This Matters
+
+**A relationship is not just emotional — it is an economic unit.**
+
+When it ends, the consequences are legal, financial, and life-altering.
+
+Breakup-AI exists because:
+- No one teaches spouses their rights
+- The legal system is inaccessible
+- The cost of ignorance is catastrophic
+
+**This platform gives people the education they should have received from the start.**
+
+---
+
+## Mission Statement
+
+**Breakup-AI empowers the non-breadwinning spouse with the legal, financial, and strategic knowledge required to protect their future.**
+
+This is not about heartbreak.  
+**This is about justice, compensation, and survival.**
+
+---
+
+## 🚀 Getting Started
+
+### Quick Start
+
+```bash
+# Run the setup script
+./setup.sh  # macOS/Linux
+setup.bat   # Windows
+
+# Configure Clerk keys in .env
+# Start with Docker
+docker-compose up
+```
+
+Visit **http://localhost:3000** to see the app!
+
+📖 **[View Quick Start Guide](./QUICKSTART.md)** | 📚 **[Full Setup Instructions](./SETUP.md)**
+
+---
+
+## 🏗️ Technology Stack
+
+### Frontend
+- **React 18** with TypeScript
+- **Vite** for lightning-fast development
+- **Tailwind CSS** for modern styling
+- **Clerk** for multi-tenant authentication
+- **TanStack Query** for data fetching
+- **React Router** for navigation
+
+### Backend
+- **Node.js + Express** API server
+- **TypeScript** for type safety
+- **Clerk SDK** for authentication
+- **Zod** for runtime validation
+- **Winston** for logging
+
+### RAG Service
+- **Python 3.11 + FastAPI**
+- **OpenAI** for embeddings & LLM
+- **Pinecone** for vector storage
+- **PostgreSQL** for metadata
+- **Neo4j** for knowledge graphs
+
+### Infrastructure
+- **Docker Compose** for orchestration
+- **PostgreSQL 16** database
+- **Neo4j 5.16** graph database
+- **Microservices** architecture
+
+---
+
+## 📁 Project Structure
+
+```
+BreakUpAI/
+├── src/                    # React frontend
+│   ├── components/         # Reusable components
+│   ├── pages/             # Page components
+│   ├── lib/               # Utilities & API client
+│   └── main.tsx           # App entry point
+│
+├── backend/               # Node.js API server
+│   ├── src/
+│   │   ├── routes/        # API endpoints
+│   │   ├── middleware/    # Express middleware
+│   │   └── utils/         # Utilities
+│   └── package.json
+│
+├── rag-service/           # Python RAG service
+│   ├── main.py           # FastAPI application
+│   ├── rag_agent.py      # RAG implementation
+│   └── requirements.txt
+│
+├── config/                # RAG system configuration
+├── public/                # Static assets & icons
+├── docker-compose.yml     # Docker orchestration
+└── REQUIREMENTS.md        # Platform requirements
+```
+
+---
+
+## 🔐 Authentication
+
+This application uses **Clerk** for multi-tenant authentication:
+
+1. Create account at [clerk.com](https://clerk.com)
+2. Create a new application
+3. Copy your keys to `.env` files
+4. Users can sign up with:
+   - Email/Password
+   - Google OAuth
+   - GitHub OAuth
+   - Other providers
+
+---
+
+## 🛠️ Development
+
+### Running Locally
+
+**With Docker:**
+```bash
+docker-compose up
+```
+
+**Without Docker:**
+```bash
+# Terminal 1 - Frontend
+npm run dev
+
+# Terminal 2 - Backend  
+cd backend && npm run dev
+
+# Terminal 3 - RAG Service
+cd rag-service && python main.py
+
+# Terminal 4 - Databases
+docker run -d -p 5432:5432 postgres:16-alpine
+docker run -d -p 7687:7687 neo4j:5.16
+```
+
+### Environment Variables
+
+Copy `.env.example` files and configure:
+
+- **Clerk Keys** - Authentication
+- **OpenAI Key** - AI/Embeddings
+- **Pinecone Key** - Vector database
+- **Database Credentials** - PostgreSQL & Neo4j
+
+See [SETUP.md](./SETUP.md) for detailed instructions.
+
+---
+
+## 📖 Documentation
+
+- **[Quick Start Guide](./QUICKSTART.md)** - Get running in 5 minutes
+- **[Setup Instructions](./SETUP.md)** - Detailed setup guide
+- **[Requirements](./REQUIREMENTS.md)** - Platform requirements
+- **[RAG Architecture](./RAG_ARCHITECTURE.md)** - RAG system design
+- **[Project Log](./project.log.md)** - Development history
+
+---
+
+## 🌐 API Endpoints
+
+### Legal Endpoints
+- `POST /api/legal/query` - Ask legal questions
+- `GET /api/legal/definition/:term` - Get definitions
+- `POST /api/legal/compare-states` - Compare states
+- `GET /api/legal/procedure/:type` - Get procedures
+- `POST /api/legal/evidence` - Evidence requirements
+
+### User Endpoints
+- `GET /api/user/profile` - Get user profile
+- `GET /api/user/preferences` - Get preferences
+- `PUT /api/user/preferences` - Update preferences
+
+---
+
+## 🚢 Deployment
+
+Coming soon: Production deployment guides for:
+- AWS (ECS, RDS, Lambda)
+- Vercel (Frontend)
+- Railway (Backend)
+- Docker Swarm
+- Kubernetes
+
+---
+
+## 📝 License
+
+Copyright © 2026 Breakup-AI. All rights reserved.
+
+---
+
+## 🤝 Contributing
+
+This is a private project. For inquiries, please contact the development team.
+
+---
+
+**Built with ❤️ to correct a civil rights failure**
+

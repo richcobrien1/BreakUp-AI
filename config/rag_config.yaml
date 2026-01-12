@@ -1,0 +1,664 @@
+# Breakup-AI Legal RAG System
+# Data ingestion pipeline configuration
+
+version: "1.0"
+project: "breakupai-legal-rag"
+
+# ============================================================================
+# DATA SOURCES CONFIGURATION
+# ============================================================================
+
+data_sources:
+  # Federal Legal Sources
+  federal:
+    - name: "US Code"
+      type: "statute"
+      url: "https://www.govinfo.gov/bulkdata/USCODE"
+      format: "XML"
+      update_frequency: "daily"
+      enabled: true
+      
+    - name: "Federal Register"
+      type: "regulation"
+      url: "https://www.federalregister.gov/api/v1"
+      format: "JSON"
+      update_frequency: "daily"
+      enabled: true
+      
+    - name: "Supreme Court Opinions"
+      type: "case"
+      url: "https://www.courtlistener.com/api/rest/v3/opinions/"
+      format: "JSON"
+      update_frequency: "daily"
+      filter:
+        court: "scotus"
+      enabled: true
+      
+    - name: "Federal Circuit Courts"
+      type: "case"
+      url: "https://www.courtlistener.com/api/rest/v3/opinions/"
+      format: "JSON"
+      update_frequency: "daily"
+      filter:
+        court_type: "federal-appellate"
+      enabled: true
+
+  # State Legal Sources
+  state:
+    - name: "State Codes (All 50 States)"
+      type: "statute"
+      sources:
+        - provider: "Legal Information Institute"
+          url: "https://www.law.cornell.edu/statutes"
+        - provider: "Justia"
+          url: "https://law.justia.com/codes/"
+        - provider: "Public Resource"
+          url: "https://law.resource.org/"
+      format: "HTML"
+      update_frequency: "weekly"
+      states: ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA",
+               "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD",
+               "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ",
+               "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC",
+               "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY", "DC"]
+      priority_states: ["CA", "NY", "TX", "FL", "IL"]
+      enabled: true
+      
+    - name: "State Court Opinions"
+      type: "case"
+      sources:
+        - provider: "CourtListener"
+          url: "https://www.courtlistener.com/api/rest/v3/"
+        - provider: "Caselaw Access Project"
+          url: "https://api.case.law/v1/"
+        - provider: "Google Scholar"
+          url: "https://scholar.google.com/"
+      format: "JSON"
+      update_frequency: "daily"
+      filter:
+        topics: ["family law", "divorce", "child custody", "alimony", 
+                "property division", "domestic violence"]
+      enabled: true
+
+  # Specialized Legal Databases
+  specialized:
+    - name: "Uniform Laws"
+      type: "statute"
+      sources:
+        - "UIFSA (Uniform Interstate Family Support Act)"
+        - "UCCJEA (Uniform Child Custody Jurisdiction Act)"
+        - "PKPA (Parental Kidnapping Prevention Act)"
+      url: "https://www.uniformlaws.org/"
+      format: "PDF"
+      update_frequency: "quarterly"
+      enabled: true
+      
+    - name: "Family Law Treatises"
+      type: "secondary"
+      sources:
+        - "Williston on Contracts"
+        - "American Law Reports (ALR)"
+        - "State-specific practice guides"
+      update_frequency: "monthly"
+      enabled: true
+      
+    - name: "Black's Law Dictionary"
+      type: "definition"
+      url: "https://thelawdictionary.org/"
+      format: "JSON"
+      update_frequency: "quarterly"
+      enabled: true
+
+  # Court Forms and Procedures
+  forms:
+    - name: "State Court Forms"
+      type: "form"
+      sources:
+        state_courts: "All 50 state court websites"
+      format: "PDF"
+      update_frequency: "monthly"
+      categories:
+        - "Divorce petitions"
+        - "Protective orders"
+        - "Child custody"
+        - "Financial disclosures"
+        - "Property declarations"
+      enabled: true
+
+# ============================================================================
+# VECTOR DATABASE CONFIGURATION
+# ============================================================================
+
+vector_database:
+  provider: "pinecone"
+  
+  pinecone:
+    api_key: "${PINECONE_API_KEY}"
+    environment: "us-west1-gcp"
+    
+    indexes:
+      - name: "legal-cases"
+        dimension: 3072
+        metric: "cosine"
+        pods: 2
+        replicas: 2
+        pod_type: "p1.x1"
+        
+      - name: "legal-statutes"
+        dimension: 3072
+        metric: "cosine"
+        pods: 2
+        replicas: 2
+        pod_type: "p1.x1"
+        
+      - name: "legal-definitions"
+        dimension: 3072
+        metric: "cosine"
+        pods: 1
+        replicas: 2
+        pod_type: "p1.x1"
+        
+      - name: "legal-procedures"
+        dimension: 3072
+        metric: "cosine"
+        pods: 1
+        replicas: 2
+        pod_type: "p1.x1"
+  
+  fallback:
+    provider: "weaviate"
+    url: "${WEAVIATE_URL}"
+    api_key: "${WEAVIATE_API_KEY}"
+
+# ============================================================================
+# METADATA DATABASE CONFIGURATION
+# ============================================================================
+
+metadata_database:
+  provider: "postgresql"
+  
+  postgresql:
+    host: "${POSTGRES_HOST}"
+    port: 5432
+    database: "breakupai_legal"
+    user: "${POSTGRES_USER}"
+    password: "${POSTGRES_PASSWORD}"
+    ssl_mode: "require"
+    
+    tables:
+      documents:
+        columns:
+          - "document_id (UUID, PRIMARY KEY)"
+          - "document_type (VARCHAR)"
+          - "jurisdiction (VARCHAR)"
+          - "title (TEXT)"
+          - "citation (VARCHAR)"
+          - "full_text (TEXT)"
+          - "summary (TEXT)"
+          - "plain_language (TEXT)"
+          - "date_published (TIMESTAMP)"
+          - "date_effective (TIMESTAMP)"
+          - "date_modified (TIMESTAMP)"
+          - "status (VARCHAR)"
+          - "metadata (JSONB)"
+          - "created_at (TIMESTAMP)"
+          - "updated_at (TIMESTAMP)"
+        indexes:
+          - "idx_jurisdiction"
+          - "idx_document_type"
+          - "idx_date_effective"
+          - "idx_status"
+          - "gin_metadata"
+          - "gin_full_text_search"
+          
+      definitions:
+        columns:
+          - "definition_id (UUID, PRIMARY KEY)"
+          - "term (VARCHAR)"
+          - "definition (TEXT)"
+          - "plain_language (TEXT)"
+          - "jurisdiction (VARCHAR)"
+          - "source_id (UUID, FOREIGN KEY)"
+          - "citation (VARCHAR)"
+          - "examples (JSONB)"
+          - "related_terms (VARCHAR[])"
+          
+      citations:
+        columns:
+          - "citation_id (UUID, PRIMARY KEY)"
+          - "citing_doc_id (UUID)"
+          - "cited_doc_id (UUID)"
+          - "citation_type (VARCHAR)"
+          - "context (TEXT)"
+          - "relevance_score (FLOAT)"
+
+# ============================================================================
+# GRAPH DATABASE CONFIGURATION
+# ============================================================================
+
+graph_database:
+  provider: "neo4j"
+  
+  neo4j:
+    uri: "${NEO4J_URI}"
+    user: "${NEO4J_USER}"
+    password: "${NEO4J_PASSWORD}"
+    database: "breakupai"
+    
+    node_labels:
+      - "Statute"
+      - "Case"
+      - "Regulation"
+      - "Definition"
+      - "Procedure"
+      - "Jurisdiction"
+      - "Concept"
+      - "Court"
+      
+    relationship_types:
+      - "CITES"
+      - "CITED_BY"
+      - "OVERRULES"
+      - "SUPERSEDES"
+      - "AMENDED_BY"
+      - "INTERPRETS"
+      - "DEFINES"
+      - "APPLIES_IN"
+      - "GOVERNED_BY"
+      - "RELATED_TO"
+      - "CONCERNS"
+    
+    indexes:
+      - "CREATE INDEX statute_citation FOR (s:Statute) ON (s.citation)"
+      - "CREATE INDEX case_citation FOR (c:Case) ON (c.citation)"
+      - "CREATE INDEX jurisdiction_code FOR (j:Jurisdiction) ON (j.code)"
+
+# ============================================================================
+# EMBEDDING MODEL CONFIGURATION
+# ============================================================================
+
+embedding:
+  provider: "openai"
+  
+  openai:
+    api_key: "${OPENAI_API_KEY}"
+    model: "text-embedding-3-large"
+    dimensions: 3072
+    batch_size: 100
+    
+  fallback:
+    provider: "openai"
+    model: "text-embedding-3-small"
+    dimensions: 1536
+
+# ============================================================================
+# LLM CONFIGURATION
+# ============================================================================
+
+llm:
+  primary:
+    provider: "openai"
+    model: "gpt-4o"
+    api_key: "${OPENAI_API_KEY}"
+    temperature: 0.1
+    max_tokens: 4000
+    
+  fallback:
+    provider: "anthropic"
+    model: "claude-3-5-sonnet-20241022"
+    api_key: "${ANTHROPIC_API_KEY}"
+    temperature: 0.1
+    max_tokens: 4000
+
+# ============================================================================
+# CHUNKING STRATEGY
+# ============================================================================
+
+chunking:
+  strategy: "semantic"
+  
+  semantic:
+    max_chunk_size: 1000
+    min_chunk_size: 100
+    overlap: 200
+    
+    split_boundaries:
+      - "paragraph"
+      - "section"
+      - "subsection"
+      
+    preserve:
+      - "citations"
+      - "section_numbers"
+      - "headers"
+      
+  fallback:
+    strategy: "fixed"
+    chunk_size: 800
+    overlap: 150
+
+# ============================================================================
+# INGESTION PIPELINE
+# ============================================================================
+
+ingestion:
+  schedule:
+    daily:
+      - "federal_register"
+      - "court_opinions"
+      - "new_statutes"
+      
+    weekly:
+      - "state_codes"
+      - "regulations"
+      - "forms_updates"
+      
+    monthly:
+      - "treatises"
+      - "practice_guides"
+      - "full_index_rebuild"
+  
+  processors:
+    statute:
+      - "extract_section_numbers"
+      - "parse_hierarchy"
+      - "identify_amendments"
+      - "extract_definitions"
+      - "generate_plain_language"
+      
+    case:
+      - "extract_citation"
+      - "identify_parties"
+      - "extract_holdings"
+      - "parse_court_date"
+      - "build_citation_network"
+      - "generate_summary"
+      
+    regulation:
+      - "extract_cfr_citation"
+      - "identify_agency"
+      - "parse_effective_date"
+      - "link_to_statutes"
+      
+    definition:
+      - "extract_term"
+      - "normalize_term"
+      - "generate_plain_language"
+      - "find_related_terms"
+  
+  quality_checks:
+    - "citation_validation"
+    - "jurisdiction_detection"
+    - "duplicate_detection"
+    - "metadata_completeness"
+    - "text_extraction_quality"
+    - "embedding_generation"
+    - "cross_reference_validation"
+
+# ============================================================================
+# RETRIEVAL CONFIGURATION
+# ============================================================================
+
+retrieval:
+  strategies:
+    dense:
+      weight: 0.6
+      top_k: 10
+      
+    sparse:
+      weight: 0.3
+      top_k: 10
+      method: "BM25"
+      
+    graph:
+      weight: 0.1
+      max_depth: 2
+  
+  filters:
+    jurisdiction:
+      priority: "user_state > federal > neighboring_states"
+      
+    recency:
+      prefer_recent: true
+      cutoff_years: 10
+      active_only: true
+      
+    authority:
+      weight_by_court: true
+      precedential_weight:
+        supreme_court: 10
+        appellate: 7
+        trial: 3
+        administrative: 2
+  
+  reranking:
+    enabled: true
+    model: "cross-encoder/ms-marco-MiniLM-L-6-v2"
+    top_k_rerank: 20
+    final_k: 5
+
+# ============================================================================
+# PLAIN LANGUAGE TRANSLATION
+# ============================================================================
+
+plain_language:
+  enabled: true
+  target_reading_level: 8.0
+  
+  translation:
+    model: "gpt-4o"
+    temperature: 0.3
+    
+    guidelines:
+      - "Use 8th grade vocabulary"
+      - "Active voice preferred"
+      - "Short sentences (< 20 words)"
+      - "Break complex concepts"
+      - "Add examples"
+      - "Preserve legal accuracy"
+      
+  validation:
+    readability_check: true
+    attorney_review: true
+    user_testing: true
+
+# ============================================================================
+# SECURITY & PRIVACY
+# ============================================================================
+
+security:
+  encryption:
+    at_rest: "AES-256"
+    in_transit: "TLS 1.3"
+    
+  authentication:
+    method: "OAuth2"
+    provider: "Auth0"
+    
+  access_control:
+    model: "RBAC"
+    roles:
+      - "admin"
+      - "data_engineer"
+      - "legal_reviewer"
+      - "api_user"
+  
+  privacy:
+    query_logging: "anonymous"
+    pii_storage: false
+    data_retention_days: 30
+    
+  compliance:
+    - "GDPR"
+    - "CCPA"
+    - "SOC2"
+
+# ============================================================================
+# MONITORING & OBSERVABILITY
+# ============================================================================
+
+monitoring:
+  provider: "datadog"
+  
+  metrics:
+    - "query_latency_p50"
+    - "query_latency_p95"
+    - "query_latency_p99"
+    - "retrieval_accuracy"
+    - "api_error_rate"
+    - "data_freshness"
+    - "system_uptime"
+    - "embedding_generation_time"
+    - "database_query_time"
+    
+  alerts:
+    - name: "High query latency"
+      condition: "p95 > 1000ms"
+      severity: "warning"
+      
+    - name: "Ingestion failure"
+      condition: "failed_count > 5"
+      severity: "critical"
+      
+    - name: "Stale data"
+      condition: "last_update > 48h"
+      severity: "warning"
+      
+    - name: "API downtime"
+      condition: "uptime < 99%"
+      severity: "critical"
+
+# ============================================================================
+# QUALITY ASSURANCE
+# ============================================================================
+
+quality_assurance:
+  automated_checks:
+    citation_validation:
+      enabled: true
+      format_check: true
+      
+    jurisdiction_consistency:
+      enabled: true
+      
+    duplicate_detection:
+      enabled: true
+      similarity_threshold: 0.95
+      
+    metadata_completeness:
+      required_fields:
+        - "document_id"
+        - "document_type"
+        - "jurisdiction"
+        - "title"
+        - "citation"
+        - "date_effective"
+        - "status"
+  
+  human_review:
+    attorney_review:
+      sample_rate: 0.10
+      frequency: "weekly"
+      
+    plain_language_accuracy:
+      sample_rate: 0.05
+      frequency: "bi-weekly"
+      
+    full_audit:
+      frequency: "quarterly"
+  
+  metrics:
+    retrieval_accuracy:
+      target: 0.95
+      measurement: "Human eval top-5"
+      
+    citation_accuracy:
+      target: 1.00
+      measurement: "Automated validation"
+      
+    plain_language_fidelity:
+      target: 0.90
+      measurement: "Attorney review + user comprehension"
+
+# ============================================================================
+# API CONFIGURATION
+# ============================================================================
+
+api:
+  host: "0.0.0.0"
+  port: 8000
+  workers: 4
+  
+  endpoints:
+    - path: "/v1/query"
+      method: "POST"
+      rate_limit: "100/minute"
+      
+    - path: "/v1/definition"
+      method: "GET"
+      rate_limit: "200/minute"
+      
+    - path: "/v1/procedure"
+      method: "GET"
+      rate_limit: "100/minute"
+      
+    - path: "/v1/compare-states"
+      method: "POST"
+      rate_limit: "50/minute"
+      
+    - path: "/v1/evidence"
+      method: "GET"
+      rate_limit: "100/minute"
+      
+    - path: "/v1/citation-network"
+      method: "GET"
+      rate_limit: "50/minute"
+  
+  cors:
+    enabled: true
+    origins:
+      - "https://breakupai.com"
+      - "https://app.breakupai.com"
+  
+  authentication:
+    required: true
+    api_key_header: "X-API-Key"
+
+# ============================================================================
+# DEPLOYMENT
+# ============================================================================
+
+deployment:
+  platform: "AWS"
+  
+  infrastructure:
+    compute:
+      - service: "ECS Fargate"
+        containers: 4
+        cpu: "2 vCPU"
+        memory: "8 GB"
+        
+    storage:
+      - service: "S3"
+        buckets:
+          - "legal-documents-raw"
+          - "legal-documents-processed"
+          - "embeddings-cache"
+          
+    database:
+      - service: "RDS PostgreSQL"
+        instance: "db.r5.xlarge"
+        
+      - service: "Neo4j AuraDB"
+        tier: "Enterprise"
+        
+    cache:
+      - service: "ElastiCache Redis"
+        node_type: "cache.r5.large"
+  
+  ci_cd:
+    provider: "GitHub Actions"
+    environments:
+      - "development"
+      - "staging"
+      - "production"
