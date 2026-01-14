@@ -1,5 +1,22 @@
 # BreakUpAI Project Log
 
+## January 14, 2026
+
+### 🚨 Emergency Repository Recovery
+**Context**: Monorepo structure corrupted by previous AI session requiring emergency recovery.
+
+#### Recovery Actions:
+- Repository configured as git submodule with broken .git references
+- Submodule configuration removed from parent workspace
+- Full repository restored from GitHub: https://github.com/richcobrien1/BreakUp-AI
+- All commit history and working state preserved
+- Relocated to: `c:\Users\richc\Projects\v2u\apps\breakup-ai`
+- Git local config set (global config locked)
+- Manually opened in VS Code Source Control
+- **Status**: ✅ Fully operational, GitHub sync restored
+
+---
+
 ## January 11, 2026
 
 ### Icon Generation and Project Structure Setup
