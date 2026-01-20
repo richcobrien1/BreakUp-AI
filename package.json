@@ -11,6 +11,9 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "pages:dev": "wrangler pages dev dist --port 3000",
     "pages:deploy": "npm run build && wrangler pages deploy dist",
+    "cf:build": "vite build",
+    "cf:deploy:pages": "npm run pages:deploy",
+    "cf:preview": "npm run pages:dev",
     "cf:build": "tsc && vite build",
     "cf:preview": "npm run build && wrangler pages dev dist"
   },

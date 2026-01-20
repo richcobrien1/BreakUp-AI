@@ -1,0 +1,10 @@
+name = "breakup-ai-pages-sample"
+compatibility_date = "2026-01-01"
+
+[site]
+bucket = "dist"
+entry-point = "./"
+
+[vars]
+# This project already includes `wrangler` scripts. Configure secrets in Cloudflare.
+# Example: VITE_API_URL, CLOUDFLARE_ACCOUNT_ID, KV_NAMESPACE_ID
